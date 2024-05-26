@@ -66,17 +66,17 @@ function App() {
     },
   };
   const data = {
-    labels: extractRateDetails(activeData.rates).dates,
+    labels: extractRateDetails(activeData?.rates).dates,
     datasets: [
       {
         label: "Sale",
-        data:extractRateDetails(activeData.rates).sellPrices ,
+        data:extractRateDetails(activeData?.rates).sellPrices ,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
         label: `Buy`,
-        data: extractRateDetails(activeData.rates).buyPrices,
+        data: extractRateDetails(activeData?.rates).buyPrices,
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
@@ -271,7 +271,7 @@ function App() {
               </div>
             </div>
           </div>
-        }) : <div className='grid grid-cols-[2fr_3fr] w-full'>
+        }) : activeData ? <div className='grid grid-cols-[2fr_3fr] w-full'>
           <div  className='p-5'>
           <img src={extra.currency_flags[active]} width={"100px"} />
           <h2 className='text-3xl'>{activeData.name}</h2>
@@ -281,7 +281,7 @@ function App() {
           <div>
           <Line options={options} data={data} />
           </div>
-        </div>
+        </div> : "Data Not Found"
       }
     </div>
   )
